@@ -5,7 +5,7 @@
 	
 	for o = custAttrObj do
 	(
-		getDef = getDefs[1]
+		getDef = (custAttributes.getdefs o)[1]
 		defData = (custAttributes.getDefData getDef)[2]
 		for c = defData do
 		(
