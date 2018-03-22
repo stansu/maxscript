@@ -10,7 +10,6 @@
 		for c = defData do
 		(
 			appendIfUnique tempCol c.string
--- 			print (getProperty o c.string)
 		)
 	)
 	for i = 2 to tempCol.count do
@@ -18,7 +17,6 @@
 		tempString += ","
 		tempString += tempCol[i]
 	)
--- 	print tempCol
 	tempString += "\n"
 	
 	for o = custAttrObj do
