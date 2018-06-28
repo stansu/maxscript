@@ -1,36 +1,37 @@
 ﻿(
-	custAttrObj = for o = $ where (custAttributes.getDefs o) != undefined collect o
+	custAttrObj = for o = $ where (o.modifiers["Attribute Holder"]) != undefined collect o
 	tempCol = #("name")
-	tempString = "name"
-	
+	tempString = "name,"
 	for o = custAttrObj do
 	(
-		getDef = (custAttributes.getdefs o)[1]
-		defData = (custAttributes.getDefData getDef)[2]
+		getDef = (custAttributes.getdefs o.Attribute_Holder)[1]
+		if getDef != undefined do	defData = (custAttributes.getDefData getDef)[2]
 		for c = defData do
 		(
 			appendIfUnique tempCol c.string
 		)
 	)
-	for i = 2 to tempCol.count do
+	tempCount = tempCol.count
+	for i = 2 to tempCount do
 	(
-		tempString += ","
 		tempString += tempCol[i]
+		tempString += ","
 	)
 	tempString += "\n"
-	
 	for o = custAttrObj do
 	(
-		for  i = tempCol  do
+		tempString += o.name
+		tempString += ","
+		for i = 2 to tempCount do
 		(
-			if isProperty o i then
+			if isProperty o.Attribute_Holder tempCol[i] then
 			(
-				tempString += (getProperty o i) as string
+				tempString += (getProperty o.Attribute_Holder tempCol[i]) as string
 				tempString += ","
 			)
 			else
 			(
-				tempString += ","
+			tempString += ","
 			)
 		)
 		tempString = substring tempString 1 -1
